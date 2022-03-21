@@ -1,8 +1,7 @@
 <template>
   <div>
     <TopMenu v-bind="{type: 'tophead', tophead: 'Danh sách thiết lập'}" />
-    <div class="title fs26 mx-5 pt-5 mt-2"> My Store </div>
-    <div class="mx-5">
+    <div class="mx-5 mt-6 pt-5">
   <div class="columns">
     <div class="column is-3">
     <aside class="menu">
