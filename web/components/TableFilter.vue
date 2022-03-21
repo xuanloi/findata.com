@@ -356,7 +356,6 @@
 /* eslint-disable */
 import Vue from "vue"
 import mixing from "@/assets/js/mixing.js"
-import Connection from "@/assets/js/connection.js"
 import axios from "axios"
 import TaskAction from '@/components/TaskAction'
 import EnableAction from '@/components/EnableAction'
@@ -425,7 +424,7 @@ export default {
       _filters.map(v => {
         if (newVal.find(x => x.name === v.name) === undefined) {
           let index = this.filters.findIndex(y => y.name === v.name);
-          if (index >= 0) this.$delete(this.filters, index);
+          if (index >= 0) Vue.delete(this.filters, index);
         }
       });
     },
@@ -502,7 +501,7 @@ export default {
 
       if (index >= 0) {
         let filters = this.$copy(this.filters);
-        if (this.$empty(newVal)) this.$delete(filters, index);
+        if (this.$empty(newVal)) Vue.delete(filters, index);
         else Vue.set(filters[index], "value", newVal);
         this.filters = filters;
       } else {
@@ -552,7 +551,7 @@ export default {
           this.connection.getupdateRecord.forEach(v => {
             if(!v.error) {
               let index = datalist.findIndex(x => x.id === v.id)
-              if (index >= 0) this.$delete(datalist, index)
+              if (index >= 0) Vue.delete(datalist, index)
             }
           })
       
@@ -615,7 +614,7 @@ export default {
 
     removeFilter(i) {
       const filters = this.$copy(this.filters);
-      this.$delete(filters, i);
+      Vue.delete(filters, i);
       this.filters = filters;
     },
 
@@ -832,7 +831,7 @@ export default {
 
       if (this.radio === "less" || this.radio === "bigger") {
         if (!mixing.isNumber(this.value1)) {
-          if (index >= 0) this.$delete(copy, index);
+          if (index >= 0) Vue.delete(copy, index);
         } else {
           if (index >= 0) {
             copy[index].value1 = this.value1;

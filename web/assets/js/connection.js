@@ -278,11 +278,11 @@ export default class Connnection {
                 let copy = JSON.parse(JSON.stringify(this.store.state[found.name]))
                 if (!Array.isArray(id)) {
                     let index = copy.findIndex(v=>v.id===id)
-                    if(index>=0) this.$delete(copy, index)
+                    if(index>=0) Vue.delete(copy, index)
                 } else  {
                     respond.data.forEach(element => {
                         let index = copy.findIndex(v=>v.id===element.id)
-                        if(index>=0) this.$delete(copy, index)
+                        if(index>=0) Vue.delete(copy, index)
                     })
                 }
                 this.store.commit('updateStore', {name: found.name, data: copy})

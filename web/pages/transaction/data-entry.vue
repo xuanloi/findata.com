@@ -263,27 +263,18 @@
 </template>
 
 <script>
-/* eslint-disable */
 import Vue from 'vue'
 import Export from '@/assets/js/export.js'
 import mixing from '@/assets/js/mixing.js'
-
 import axios from 'axios'
 import login from '@/pages/login.vue'
-import TopMenu from '@/components/TopMenu'
-import Footer from '@/components/Footer'
 import media from '@/pages/media.vue'
 import Import from '@/components/Import'
 import "bulma-extensions/bulma-steps/dist/css/bulma-steps.min.css"
-import TableFilter from '@/components/TableFilter.vue'
 import socket from '~/plugins/socket.io.js'
-
 Vue.component('loginform', login)
-Vue.component('TopMenu', TopMenu)
-Vue.component('Footer', Footer)
 Vue.component('media', media)
 Vue.component('Import', Import)
-Vue.component('TableFilter', TableFilter)
 
 export default {
    data() {
