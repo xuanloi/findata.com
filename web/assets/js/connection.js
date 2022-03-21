@@ -83,8 +83,9 @@ export default class Connnection {
         {name: 'analysisreport', url: 'data/Analysis_Report/', url_detail: 'data-detail/Analysis_Report/', params: {values:'id,name,file,issue_date,company,company__stock_code,company__name,ticker,expert,content,create_time,create_time__date'}},
     ]
 
-    //path = 'http://61.28.238.196:8000/' //'http://data.findata.com.vn/' 
-    path = 'http://127.0.0.1:8000/'
+    path = 'http://61.28.238.196:8000/' 
+    //'http://data.findata.com.vn/' 
+    //path = 'http://127.0.0.1:8000/'
     batchApi = []
     batchStatus = []
     batchData = []
