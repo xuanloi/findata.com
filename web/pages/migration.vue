@@ -93,7 +93,7 @@ export default {
         this.data = this.connection.getbatchData[0].data
         this.connection.getbatchData.map(v=>{
           let conn = this.$connection()
-          conn.path = 'http://localhost:8000/'
+          conn.path = 'http://61.28.238.196:8000/'
           if(v.name==='usersetting') {
             let copy = this.$copy(v.data)
             copy.map(x=>{
