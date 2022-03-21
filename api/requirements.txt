@@ -1,0 +1,12 @@
+Django==3.2.6
+djangorestframework
+django-cors-headers
+psycopg2-binary
+redis
+huey
+xlwt
+redis-server
+pandas
+JayDeBeApi
+openpyxl
+xlrd
