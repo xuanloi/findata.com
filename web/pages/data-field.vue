@@ -47,7 +47,7 @@
   </div>
   <div class="dropdown-menu" role="menu">
       <div style="min-width:21rem; background-color:#d3d3d3" v-if="!ismobile">
-          <MenuSave class="px-3 pb-3"  v-bind="{pagename: 'pagedata', classify: 1, focus: focus}" v-if="login" />
+          <MenuSave class="px-3 pb-3"  v-bind="{pagename: 'pagedata', classify: 3, focus: focus}" v-if="login" />
         </div>
     </div>
     </div>

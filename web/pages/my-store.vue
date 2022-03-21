@@ -1,6 +1,6 @@
 <template>
   <div>
-    <topmenu v-bind="{type: 'tophead', tophead: 'Danh sách thiết lập'}"></topmenu>
+    <TopMenu v-bind="{type: 'tophead', tophead: 'Danh sách thiết lập'}" />
     <div class="title fs26 mx-5 pt-5 mt-2"> My Store </div>
     <div class="mx-5">
   <div class="columns">
@@ -158,18 +158,12 @@
 </template>
 
 <script>
-import Editor from '@tinymce/tinymce-vue'
 export default {
-  components: {
-    Editor
-  },
-  
   head() {
     return {
       title: 'Danh sách thiết lập'
     }
   },
-
   props: ['modal'],
   data() {
     return {

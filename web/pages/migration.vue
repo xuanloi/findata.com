@@ -70,20 +70,24 @@ export default {
     this.pagedata = {data: [], fields: fields, action: undefined, enableDelete: false, api: {}, origin_api: {},
     filterby: undefined, showFilter: true}
 
+    /*
     const args = ['moneyunit', 'datatype', 'filterchoice', 'colorchoice', 'textalign', 'placement',
     'colorscheme', 'filtertype', 'sorttype', 'tablesetting', 'settingchoice', 'sharechoice', 'menuchoice', 'settingtype', 'settingclass']
-    this.connection.dataPath = 'https://api.akifarm.vn/'
-    let connlist = this.connection.checkDataReady(args)
-    connlist.map(v=>v.path = 'dataPath')
+    */
+
+   // const args = ['datatype']
+   // this.connection.dataPath = 'https://api.akifarm.vn/'
+    //let connlist = this.connection.checkDataReady(args)
+    //connlist.map(v=>v.path = 'dataPath')
     //this.connection.getApi(connlist)
 
     let found = this.connection.find('usersetting')
-    //this.connection.dataPath = 'https://api.akifarm.vn/'
+    this.connection.dataPath = 'https://api.akifarm.vn/'
     found.path = 'dataPath'
     found.params.filter = {name__in: ['your-setting-fields', 'system-setting-fields', 'share-setting-fields']}
-    connlist.push(found)
-    //this.connection.getApi([found])
-    this.connection.getApi(connlist)
+    //connlist.push(found)
+    this.connection.getApi([found])
+    //this.connection.getApi(connlist)
   },
 
   watch: {
@@ -98,8 +102,8 @@ export default {
             let copy = this.$copy(v.data)
             copy.map(x=>{
               x.user = 1
-              x.classify = 1
-              x.type = 1
+              x.classify = 3
+              x.type = 7
               }
               )
             conn.insert(v.name, copy)
