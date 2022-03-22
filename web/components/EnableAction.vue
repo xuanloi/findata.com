@@ -76,15 +76,10 @@
 </template>
 
 <script>
-/* eslint-disable */
 import Vue from "vue";
 import mixing from "@/assets/js/mixing.js";
-import Connection from "@/assets/js/connection.js"
 import login from '@/pages/login.vue'
-import Export from '@/assets/js/export.js'
-
 Vue.component('loginform', login)
-
 export default {
   props: ["selectedlist"],
 
