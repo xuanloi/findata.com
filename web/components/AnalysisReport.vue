@@ -76,6 +76,13 @@
      
            <div class="field is-horizontal">
       <div class="field-body">
+                <div class="field is-narrow">
+  <label class="label">Tổng số trang<span class="has-text-danger ml-1">*</span></label>
+  <div class="control">
+    <input class="input" type="text" placeholder="" v-model="record.total_pages">
+  </div>
+     <p class="help is-danger" v-if="errors.find(v=>v.name==='total_pages')">{{errors.find(v=>v.name==='total_pages').text}}</p>
+</div>
         <div class="field">
   <label class="label">File đính kèm<span class="has-text-danger ml-1">*</span></label>
   <div class="control">
@@ -217,6 +224,7 @@ export default {
       if(this.ticker.length===0) this.errors.push({name: 'ticker', text: 'Chưa nhập chứng khoán liên quan'})
       if(this.expert.length===0) this.errors.push({name: 'expert', text: 'Chưa nhập chuyên gia'})
       if(this.$empty(this.record.content)) this.errors.push({name: 'content', text: 'Chưa nhập nội dung tóm tắt'})
+      if(!(this.record.total_pages>0)) this.errors.push({name: 'total_pages', text: 'Tổng số trang phải >0'})
       if(this.errors.length>0) return
       this.record.issue_date = this.$dayjs(this.record.date).format('YYYY-MM-DD')
       this.record.ticker = this.ticker.map(v=>{return {id: v.id, stock_code: v.stock_code, name: v.name}})

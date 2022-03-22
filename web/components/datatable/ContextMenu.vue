@@ -509,11 +509,8 @@
 </template>
 
 <script>
-
-
 export default {
   props: ['pagename', 'field', 'filters', 'filterData', 'modal'],
-
   data() {
     return {
       search: undefined,

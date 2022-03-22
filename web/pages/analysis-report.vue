@@ -125,7 +125,7 @@ export default {
     selectMedia(v) {
       this.open = false
       this.currentAction.event = 'edit'
-      if(v) this.currentAction.row.file = this.connection.path + 'static/file/' + v.file
+      if(v) this.currentAction.row.file = v.file
       this.$store.commit('updateState', {name: 'pagedata', key: 'action', data: this.currentAction})  
     }
   }

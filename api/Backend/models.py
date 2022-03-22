@@ -2661,6 +2661,7 @@ class Analysis_Report(models.Model):
     ticker = models.JSONField(null=False)
     expert = models.JSONField(null=False)
     content = models.TextField(null=False)
+    total_pages = models.IntegerField(null=False)
     create_time = models.DateTimeField(null = True, auto_now_add=True)
        
     class Meta:
