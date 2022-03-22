@@ -446,7 +446,7 @@ export default {
     },
 
     removeCondition(arr, i) {
-      this.$delete(arr, i)
+      Vue.delete(arr, i)
     },
 
     doConditionFilter(v, type, id) {
@@ -616,7 +616,7 @@ export default {
     },
 
     removeFilter(i) {
-      this.$delete(this.filters, i)
+      Vue.delete(this.filters, i)
       this.doFilter(this.filters)
     },
 
@@ -645,7 +645,7 @@ export default {
     doSearch(field, search) {
       let copy = this.$copy(this.filters)
       let idx = copy.findIndex(v=>v.name===field.name)
-      if(idx>=0) this.$delete(copy, idx)
+      if(idx>=0) Vue.delete(copy, idx)
 
       if(this.pagedata.origin_api.full_data) {
         let data = this.frontendFilter(copy)
@@ -664,10 +664,10 @@ export default {
       if(found) {
         !found.select? found.select = [] : false
         let idx = found.select.findIndex(x=>x===value)
-        idx>=0? this.$delete(found.select, idx) : found.select.push(value)
+        idx>=0? Vue.delete(found.select, idx) : found.select.push(value)
         if(found.select.length===0) {
           idx = this.filters.findIndex(v=>v.name===field.name)
-          if(idx>=0) this.$delete(this.filters, idx)
+          if(idx>=0) Vue.delete(this.filters, idx)
         }
       } else {
         this.filters.push({name: field.name, label: field.label, select: [value], format: field.format})
