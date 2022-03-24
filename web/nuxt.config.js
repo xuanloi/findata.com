@@ -54,7 +54,7 @@ module.exports = {
   ],
 
   env: {
-    WS_URL: process.env.WS_URL || 'http://findata.com.vn'
+    //WS_URL: process.env.WS_URL || 'http://findata.com.vn'
   },
 
   // Axios module configuration (https://go.nuxtjs.dev/config-axios)

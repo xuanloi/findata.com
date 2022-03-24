@@ -15,9 +15,9 @@
         <div class="field">
         <div class="control">
         <div :type="errList.find(v=>v==='dob') !==undefined? 'is-danger' : ''" >
-          <b-datepicker   size="font-smaller"
+          <b-datepicker size="font-smaller"
             ref="datepicker"
-            locale="it-IT"
+            locale="en-GB"
             placeholder="Chọn ngày"
             v-model="fdate"
           >
@@ -37,7 +37,7 @@
     <div :type="errList.find(v=>v==='dob') !==undefined? 'is-danger' : ''" >
     <b-datepicker   size="font-smaller"
         ref="datepicker"
-        locale="it-IT"
+        locale="en-GB"
         placeholder="Chọn ngày"
         v-model="tdate"
         >
@@ -61,21 +61,9 @@
 </template>
 
 <script>
-/* eslint-disable */
-import TopMenu from '@/components/TopMenu'
-import Footer from '@/components/Footer'
-
 import mixing from '@/assets/js/mixing.js'
-import TableFilter from '@/components/TableFilter.vue'
 import Export from '@/assets/js/export.js'
-
 export default {
-    components: {
-      TopMenu,
-      Footer,
-      TableFilter
-    },
-
     data () {
       return {
         connection: this.$connection(this.$buefy),
@@ -136,7 +124,6 @@ export default {
       fields.push(mixing.createField(name, text, 'string', false, true))
       fields.push(mixing.createField('percentage', 'Tỷ lệ', 'string', false, true))
       fields.push(mixing.createField('priority', 'Ưu tiên', 'string', false, true))
-      
       field = mixing.createField('status__value', 'Trạng thái', 'string', false, true)
       field.style = {list: [{value: 'not-yet-entered', class: 'button is-small is-primary is-outlined'},
         {value: 'entered', class: 'button is-small is-info is-outlined'},
@@ -309,7 +296,6 @@ export default {
       getHeader() {
           let status = this.$route.query.status
           if(status!==undefined) status = this.api.getbyid(parseInt(status)).code
-
           if(status===undefined) this.tophead = 'Danh sách công việc'
           else if(status==='not-yet-entered') this.tophead = 'Danh sách công việc chưa nhập'
           else if(status==='entered') this.tophead = 'Danh sách công việc đang nhập'

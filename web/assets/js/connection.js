@@ -1,4 +1,3 @@
-/* eslint-disable */
 import axios from 'axios'
 import Vue from 'vue'
 
@@ -132,7 +131,7 @@ export default class Connnection {
         this.batchData = []
         let startTime = new Date().getTime()
         if(this.timer) clearInterval(this.timer)
-        if(this.notif) this.notif.close()
+        //if(this.notif) this.notif.close()
 
         list.forEach(element => {
             let found = this.requirelist.find(v=>v.name===element.name)
@@ -141,7 +140,7 @@ export default class Connnection {
             params.login = this.store.state.login===undefined? undefined : this.store.state.login.id
             if(element.method==='post') this.batchApi.push(axios.post(url, element.data))
             else this.batchApi.push(axios.get(url, {params: params}))
-            this.batchStatus.push({name: element.name, ready: false, url: (element.url? element.url : found.url), path: 'dataPath', params: params, commit: found? found.commit : undefined})
+            this.batchStatus.push({name: element.name, ready: false, url: (element.url? element.url : found.url), path: element.path, params: params, commit: found? found.commit : undefined})
         })
         
         let self = this, duration = 0 //, notif = undefined
