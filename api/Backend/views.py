@@ -474,8 +474,6 @@ def import_data(request, name):
     return Response(data if error == True or action=='delete' else return_data)
 
 
-
-
 #=============================================================================
 #--- upload/ ---
 upload_folder = "Upload/"

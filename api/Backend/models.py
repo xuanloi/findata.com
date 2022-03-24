@@ -2452,7 +2452,7 @@ class Stock_Price(models.Model):
     company = models.ForeignKey(Company, null=True, related_name='+', on_delete=models.PROTECT)
     create_time = models.DateTimeField(null = True, auto_now_add=True)
     task = models.ForeignKey(Task_Stock, null=False, related_name='+', on_delete=models.PROTECT)
-     #Stock_Price_ADD_NEW_FIELD
+    #Stock_Price_ADD_NEW_FIELD
     f02751 = models.FloatField(null=True)
     f02752 = models.FloatField(null=True)
     f02753 = models.FloatField(null=True)
@@ -2484,6 +2484,42 @@ class Stock_Price(models.Model):
     f02978 = models.FloatField(null=True) #lnst
     f02979 = models.FloatField(null=True) #vcsh
     f02981 = models.FloatField(null=True) #ps
+    #CHIBAOGIA
+    f02921=models.FloatField(null=True)
+    f02912=models.FloatField(null=True)
+    f02901=models.FloatField(null=True)
+    f02902=models.FloatField(null=True)
+    f02903=models.FloatField(null=True)
+    f02904=models.FloatField(null=True)
+    f02905=models.FloatField(null=True)
+    f02906=models.FloatField(null=True)
+    f02907=models.FloatField(null=True)
+    f02908=models.FloatField(null=True)
+    f02909=models.FloatField(null=True)
+    f02910=models.FloatField(null=True)
+    f02911=models.FloatField(null=True)
+    f02913=models.FloatField(null=True)
+    f02914=models.FloatField(null=True)
+    f02915=models.FloatField(null=True)
+    f02916=models.FloatField(null=True)
+    f02917=models.FloatField(null=True)
+    f02918=models.FloatField(null=True)
+    f02919=models.FloatField(null=True)
+    f02920=models.FloatField(null=True)
+    f02922=models.FloatField(null=True)
+    f02923=models.FloatField(null=True)
+    f02924=models.FloatField(null=True)
+    f02925=models.FloatField(null=True)
+    f02926=models.FloatField(null=True)
+    f02927=models.FloatField(null=True)
+    f02928=models.FloatField(null=True)
+    f02929=models.FloatField(null=True)
+    f02930=models.FloatField(null=True)
+    f02931=models.FloatField(null=True)
+    f02932=models.FloatField(null=True)
+    f02933=models.FloatField(null=True)
+    f02934=models.FloatField(null=True)
+    f02935=models.FloatField(null=True)
 
     class Meta:
         db_table = 'stock_price'
