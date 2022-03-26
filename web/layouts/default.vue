@@ -1,13 +1,10 @@
 <template>
-  <div>
-    <Nuxt v-if="ready" />
-  </div>
+  <Nuxt v-if="ready" />
 </template>
 
 <script>
 import mixing from '@/assets/js/mixing.js'
 import Api from '@/assets/js/api.js'
-
 export default {
   data() {
     return {
@@ -94,7 +91,7 @@ export default {
   }
 }
 </script>
-
+<!--
 <style>
 html {
   font-family:
@@ -114,4 +111,4 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
-</style>
+</style>-->
