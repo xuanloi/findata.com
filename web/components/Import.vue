@@ -122,6 +122,7 @@ export default {
       path: '',
       file: undefined,
       isLoading: false,
+      requireFields: [],
       classinfo: [{type: 'success', icon_class: 'mdi mdi-check', text_class: 'has-text-dark'},
           {type: 'error', icon_class: 'mdi mdi-close has-text-danger', text_class: 'has-text-danger'},
           {type: 'warning', icon_class: 'mdi mdi-alert has-text-warning', text_class: 'has-text-warning'},
@@ -271,7 +272,6 @@ export default {
       },
 
       verifyImportPriceLive() {
-        console.log('this case')
         this.importlist = []
         this.data.map(v=>{
           let row = this.$copy(v)
@@ -391,7 +391,6 @@ export default {
       //check require field
       checkfieldlist() {
           var found = undefined
-          let requireFields = []
           if(this.$route.query.report==='TKGIA')
             found = this.api.find3var('inform','import','stock-price-fields')
           else if(this.$route.query.report==='TKLENH')
@@ -407,18 +406,17 @@ export default {
 
           if(found !== undefined) this.requireFields = found.detail.split(',')
           let misslist = []
-
           //check field list is ok
           this.requireFields.forEach(element => {
               var field = this.datafile.schema.fields.find(v=>v.name===element)
               if(field===undefined) misslist.push(element)
           })
           if(misslist.length>0) {
-              this.msgInfo.push({message: (this.api.find3var('inform','import','field-list-fail').value + ': ' + misslist.join(', ')), type: 'error'})
-              return false
+            this.msgInfo.push({message: (this.api.find3var('inform','import','field-list-fail').value + ': ' + misslist.join(', ')), type: 'error'})
+            return false
           } else {
-              this.msgInfo.push({message: this.api.find3var('inform','import','field-list-ok').value, type: 'success'})
-              return true
+            this.msgInfo.push({message: this.api.find3var('inform','import','field-list-ok').value, type: 'success'})
+            return true
           }
       },
 
