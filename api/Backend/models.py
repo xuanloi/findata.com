@@ -2909,6 +2909,7 @@ class Taindex(models.Model):
     f02923=models.FloatField(null=True)
     f02925=models.FloatField(null=True)
     f02922=models.FloatField(null=True)
+    f02932=models.FloatField(null=True)
 
     class Meta:
         db_table = 'taindex'
