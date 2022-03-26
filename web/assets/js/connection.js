@@ -80,6 +80,8 @@ export default class Connnection {
         {name: 'usersetting', commit: undefined, url: 'data/User_Setting/', url_detail: 'data-detail/User_Setting/', params: {sort: '-update_time', values: 'id,name,detail,user,type,type__code,type__name,note,default,create_time,update_time,classify,classify__name'}},
         //end
         {name: 'analysisreport', url: 'data/Analysis_Report/', url_detail: 'data-detail/Analysis_Report/', params: {values:'id,name,file,issue_date,company,company__stock_code,company__name,ticker,expert,content,create_time,create_time__date,total_pages', sort: '-issue_date'}},
+        {name: 'tasktaindex', commit: undefined, url: 'data/Task_Taindex/', url_detail: 'data-detail/Task_Taindex/', params: {}},
+        {name: 'taindex', commit: undefined, url: 'data/Taindex/', url_detail: 'data-detail/Taindex/', params: {}}
     ]
 
     path = 'http://61.28.238.196:8000/' 

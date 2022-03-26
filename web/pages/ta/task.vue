@@ -17,7 +17,7 @@
         <div :type="errList.find(v=>v==='dob') !==undefined? 'is-danger' : ''" >
           <b-datepicker   size="font-smaller"
             ref="datepicker"
-            locale="it-IT"
+            locale="en-GB"
             placeholder="Chọn ngày"
             v-model="fdate"
           >
@@ -37,7 +37,7 @@
     <div :type="errList.find(v=>v==='dob') !==undefined? 'is-danger' : ''" >
     <b-datepicker   size="font-smaller"
         ref="datepicker"
-        locale="it-IT"
+        locale="en-GB"
         placeholder="Chọn ngày"
         v-model="tdate"
         >
@@ -63,7 +63,6 @@
 <script>
 import mixing from '@/assets/js/mixing.js'
 import Export from '@/assets/js/export.js'
-
 export default {
     data () {
       return {
@@ -92,10 +91,8 @@ export default {
       let field = mixing.createField('report_name__code', 'Báo cáo', 'string', false, true)
       field.tooltip = {position: 'is-right', field: 'report_name__value', class: 'tag is-rounded is-light'}
       fields.push(field)
-
       fields.push(mixing.createField('assigner__name', 'Người giao việc', 'string', false, true))
       fields.push(mixing.createField('recipient__name', 'Người nhận việc', 'string', false, true))
-
       fields.push(mixing.createField('assign_date', 'Ngày giao', 'string', false, true))
       let status = this.$route.query.status===undefined? undefined : this.api.getbyid(parseInt(this.$route.query.status)).code
       if(status==='waiting-approve') {
@@ -151,11 +148,11 @@ export default {
       'pagetask.record': function(newVal) {
         if(newVal) {
           if(this.pagetask.action==='edit') {
-            let routeData = this.$router.resolve({ path: '/transaction/task-edit', query: {task: newVal.id}})
+            let routeData = this.$router.resolve({ path: '/ta/task-edit', query: {task: newVal.id}})
             window.open(routeData.href, '_blank')
           } 
           else if(this.pagetask.action==='show') {
-            let routeData = this.$router.resolve({ path: '/transaction/data-entry', query: {task: newVal.id, report: newVal.report_name__code}})
+            let routeData = this.$router.resolve({ path: '/ta/data-entry', query: {task: newVal.id, report: newVal.report_name__code}})
             window.open(routeData.href, '_blank')
           } 
           this.$store.commit("updateState", {name: "pagetask", key: "record", data: undefined})
@@ -242,7 +239,7 @@ export default {
         let values = 'id,stock_date,report_name,report_name__code,report_name__value,assigner,assigner__name,recipient,recipient__name,assign_date,due_date,priority,status,status__value,status__code,entry_time,waiting1_time,waiting2_time,approve_time,update_time'
         let nextdate = new Date(new Date(this.tdate).getTime()+(1*24*60*60*1000))
         
-        let found = {name: 'taskstock', url: 'data/Task_Stock', params: {}}
+        let found = {name: 'tasktaindex', url: 'data/Task_Taindex', params: {}}
         let filter = {assign_date__gte: mixing.yyyymmdd(this.fdate), assign_date__lt:mixing.yyyymmdd(nextdate)}
 
         //check right
