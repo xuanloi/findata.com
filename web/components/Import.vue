@@ -423,7 +423,7 @@ export default {
       },
 
       verifyFromFrontend() {
-        let report = ['TKGIA', 'TKLENH', 'DTNNLENH', 'DTNNTT'].find(v=>v===this.$route.query.report)
+        let report = ['TKGIA', 'TKLENH', 'DTNNLENH', 'DTNNTT', 'CSPTKT'].find(v=>v===this.$route.query.report)
         report? this.verifyImportGeneral() : report = this.$route.query.report
         if(report==='GIA') this.verifyImportPriceLive()
 
