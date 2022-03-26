@@ -281,7 +281,7 @@ def validate_import(request, name):
                 elif action=='delete' or action=='approve':
                     filter = {'id': obj['id']}
 
-            if name=='Task_Stock':
+            if name=='Task_Stock' or name=='Task_Taindex':
                 filter = {'report_name': obj['report_name'], 'stock_date': obj['stock_date']}
                 
             elif name=='Report_Item':

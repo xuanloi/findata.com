@@ -10,8 +10,8 @@
             <div class="level-left">
             <div class="level-item">
             <p class="ml20">
-                <span class="tag is-primary is-size-6 mr20"> {{readylist.filter(v=>v.record_type==='new').length}} </span> 
-                <span class="has-text-primary"> Mới </span>
+              <span class="tag is-primary is-size-6 mr20"> {{readylist.filter(v=>v.record_type==='new').length}} </span> 
+              <span class="has-text-primary"> Mới </span>
             </p>
             </div>
             </div>
@@ -20,8 +20,8 @@
             <div class="level-left">
             <div class="level-item">
             <p class="ml20">
-                <span class="tag is-dark is-size-6 mr20"> {{readylist.filter(v=>v.record_type==='existed').length}} </span> 
-                <span> Đã tồn tại </span>
+              <span class="tag is-dark is-size-6 mr20"> {{readylist.filter(v=>v.record_type==='existed').length}} </span> 
+              <span> Đã tồn tại </span>
             </p>
             </div>
             </div>
@@ -74,17 +74,17 @@
         </div>
 
         <div class="column is-3 pt0  is-centered" v-if="dataready===true">
-            <div class="block mt10 mb20">
-                <b-checkbox v-model="optionNew" class="has-text-primary" type='is-primary' v-if="optionNew!==undefined">
-                    Thêm mới
-                </b-checkbox>
-                <b-checkbox v-model="optionUpdate" class="ml20 has-text-primary" type='is-primary' v-if="optionUpdate!==undefined">
-                    Cập nhật
-                </b-checkbox>
-            </div>
-            <p>
-            <a class="tag is-medium is-primary" @click="importData()" v-if="!(optionNew===undefined && optionUpdate===undefined)"> Thực hiện </a>
-            </p>
+          <div class="block mt10 mb20">
+            <b-checkbox v-model="optionNew" class="has-text-primary" type='is-primary' v-if="optionNew!==undefined">
+              Thêm mới
+            </b-checkbox>
+            <b-checkbox v-model="optionUpdate" class="ml20 has-text-primary" type='is-primary' v-if="optionUpdate!==undefined">
+              Cập nhật
+            </b-checkbox>
+          </div>
+          <p>
+          <a class="tag is-medium is-primary" @click="importData()" v-if="!(optionNew===undefined && optionUpdate===undefined)"> Thực hiện </a>
+          </p>
         </div>
         </div>
         <div class="mx-3 pt5" v-if="data.length>0"> 
@@ -348,20 +348,19 @@ export default {
             if(mixing.isDate(obj.stock_date))
               obj.stock_date = mixing.yyyymmdd(new Date(obj.stock_date))
             else {
-                ele.error = true
-                ele.note = 'Stock_date phải có định dạng yyyy-mm-dd'
+              ele.error = true
+              ele.note = 'Stock_date phải có định dạng yyyy-mm-dd'
             }
-
             let found = this.api.find3var('list', 'stock-report-name', ele.report_name)
             if(found===undefined) {
-                ele.error = true
-                ele.note = 'Tên báo cáo không hợp lệ'
+              ele.error = true
+              ele.note = 'Tên báo cáo không hợp lệ'
             } else {
               obj.report_name = found.id
               obj.unit_price = this.api.find3var('unit-price', 'stock', ele.report_name).value
               obj.into_money = obj.unit_price
             }
-
+            
             found = this.accountlist.find(v=>v.email===ele.assigner)
             if(found===undefined) {
                 ele.error = true
@@ -560,8 +559,8 @@ export default {
         this.data = this.datafile.data
         this.fields = []
         this.datafile.schema.fields.forEach(ele => {
-            let field = mixing.createField(ele.name, ele.name, 'string', false, true)
-            if(field.name!=='index') this.fields.push(field)
+          let field = mixing.createField(ele.name, ele.name, 'string', false, true)
+          if(field.name!=='index') this.fields.push(field)
         })
         this.$store.commit('updateState', {name: 'pageimport', key: 'data', data: this.$copy(this.data)})
         this.$store.commit('updateState', {name: 'pageimport', key: 'fields', data: this.$copy(this.fields)})
@@ -614,7 +613,6 @@ export default {
       else if(this.$route.query.type==='stock-data') this.verifyImportStockData()
       else if(this.$route.query.type==='industry') this.verifyIndustry()
       else if(this.$route.query.type==='taindex') this.verifyImportStockData()
-
       let filter = this.data.filter(v=>v.error===true)
       if(filter.length>0) {
         this.msgInfo.push({message: 'Dữ liệu có lỗi', type: 'error'})
