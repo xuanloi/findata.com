@@ -329,6 +329,10 @@ export default {
           found = this.api.find3var('inform','import','price-live-fields')
           this.path = 'Price_Live/'
         }
+        else if(name==='CSPTKT') {
+          found = this.api.find3var('inform','import','taindex-fields')
+          this.path = 'Taindex/'
+        }
         if(found) this.msgInfo.push({message: found.value, type: 'success'})
       },
 
