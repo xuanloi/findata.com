@@ -693,7 +693,7 @@ export default {
       else if(this.$route.query.type==='industry')
         mixing.download(this.connection.path + 'download-file/industry.xlsx')
       else if(this.$route.query.type==='taindex')
-        mixing.download(this.connection.path + 'download-file/taindex_template.xlsx')
+        mixing.download(this.connection.path + 'download-file/task_taindex_template.xlsx')
     }
   }
 }

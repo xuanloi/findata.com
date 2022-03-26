@@ -496,7 +496,7 @@ export default {
         else if(this.$route.query.report==='GIA')
           mixing.download(this.connection.path + 'download-file/price_live_template.xlsx')
         else if(this.$route.query.report==='CSPTKT')
-          mixing.download(this.connection.path + 'download-file/task_taindex_template.xlsx')
+          mixing.download(this.connection.path + 'download-file/taindex_template.xlsx')
       },
 
       getFile() {
