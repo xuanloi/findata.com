@@ -6,7 +6,7 @@ export default ({ store }) => {
     new VuexPersistence({
       key: 'storage',
       storage: window.sessionStorage,
-      reducer: state => ({ login: state.login, syspara: state.syspara, rights: state.rights, hasnews: state.hasnews, notification: state.notification })
+      reducer: state => ({ login: state.login, hasnews: state.hasnews, notification: state.notification })
     }).plugin(store)
   })
 }
