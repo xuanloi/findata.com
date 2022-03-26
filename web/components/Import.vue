@@ -398,6 +398,8 @@ export default {
             found = this.api.find3var('inform','import','foreign-deal-fields')
           else if(this.$route.query.report==='GIA')
             found = this.api.find3var('inform','import','price-live-fields')
+          else if(this.$route.query.report==='CSPTKT')
+            found = this.api.find3var('inform','import','taindex-fields')
 
           if(found !== undefined) this.requireFields = found.detail.split(',')
           let misslist = []
@@ -493,6 +495,8 @@ export default {
           mixing.download(this.connection.path + 'download-file/foreign_deal_template.xlsx')
         else if(this.$route.query.report==='GIA')
           mixing.download(this.connection.path + 'download-file/price_live_template.xlsx')
+        else if(this.$route.query.report==='CSPTKT')
+          mixing.download(this.connection.path + 'download-file/task_taindex_template.xlsx')
       },
 
       getFile() {
