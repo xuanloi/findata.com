@@ -581,25 +581,26 @@ export default {
               found = this.api.find3var('inform','import','company-fields')
           else if(this.$route.query.type==='batch-approve')
               found = this.api.find3var('inform','import','batch-approve-fields')
-          else if(this.$route.query.type==='stock-data' || this.$route.query.type==='taindex')
+          else if(this.$route.query.type==='stock-data')
             found = this.api.find3var('inform','import','stock-data-fields')
-           else if(this.$route.query.type==='industry')
+          else if(this.$route.query.type==='industry')
             found = this.api.find3var('inform','import','industry-fields')
+          else if(this.$route.query.type==='taindex')
+            found = this.api.find3var('inform','import','stock-data-fields')
 
           if(found !== undefined) this.requireFields = found.detail.split(',')
           let misslist = []
-
           //check field list is ok
           this.requireFields.forEach(element => {
-              var field = this.datafile.schema.fields.find(v=>v.name===element)
-              if(field===undefined) misslist.push(element)
+            var field = this.datafile.schema.fields.find(v=>v.name===element)
+            if(field===undefined) misslist.push(element)
           })
           if(misslist.length>0) {
-              this.msgInfo.push({message: (this.api.find3var('inform','import','field-list-fail').value + ': ' + misslist.join(', ')), type: 'error'})
-              return false
+            this.msgInfo.push({message: (this.api.find3var('inform','import','field-list-fail').value + ': ' + misslist.join(', ')), type: 'error'})
+            return false
           } else {
-              this.msgInfo.push({message: this.api.find3var('inform','import','field-list-ok').value, type: 'success'})
-              return true
+            this.msgInfo.push({message: this.api.find3var('inform','import','field-list-ok').value, type: 'success'})
+            return true
           }
       },
 
@@ -689,10 +690,12 @@ export default {
         mixing.download(this.connection.path + 'download-file/company_template.xlsx')
       else if(this.$route.query.type==='batch-approve')
         mixing.download(this.connection.path + 'download-file/approve_template.xlsx')
-      else if(this.$route.query.type==='stock-data' || this.$route.query.type==='taindex')
+      else if(this.$route.query.type==='stock-data')
         mixing.download(this.connection.path + 'download-file/stock_template.xlsx')
       else if(this.$route.query.type==='industry')
         mixing.download(this.connection.path + 'download-file/industry.xlsx')
+      else if(this.$route.query.type==='taindex')
+        mixing.download(this.connection.path + 'download-file/taindex_template.xlsx')
     }
   }
 }
