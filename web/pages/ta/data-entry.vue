@@ -593,6 +593,8 @@ export default {
       saveData() {
         let found = {name: 'report', url: this.connName.url, params: {page: 1, 
         filter:{task: this.$route.query.task, stock_date: mixing.yyyymmdd(new Date(this.task.stock_date))}}}
+        console.log(found)
+
         this.connection1.getApi([found])       
       },
 
@@ -629,7 +631,7 @@ export default {
       let fileName = this.$refs.import.getFile()
       if(!this.$empty(fileName)) data.data_file = fileName 
       if(this.$empty(this.retypeReason)===false) data.detail = this.retypeReason
-      this.connection2.update('taskstock', data, this.values)
+      this.connection2.update('tasktaindex', data, this.values)
     },
 
     taskStatus() {

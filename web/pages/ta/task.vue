@@ -79,7 +79,7 @@ export default {
 
     head() {
       return {
-        title: 'Danh sách công việc nhập báo cáo giao dịch'
+        title: this.tophead
       }
     },
 
@@ -303,7 +303,7 @@ export default {
       },
 
       getHeader() {  
-        this.tophead = 'Danh sách công việc nhập báo cáo Dữ liệu giao dịch'
+        this.tophead = 'Danh sách công việc nhập Chỉ số phân tích kỹ thuật'
       },
 
       exportData() {
