@@ -2910,7 +2910,8 @@ class Taindex(models.Model):
     f02925=models.FloatField(null=True)
     f02922=models.FloatField(null=True)
     f02932=models.FloatField(null=True)
-
+    f02933=models.FloatField(null=True)
+    
     class Meta:
         db_table = 'taindex'
         unique_together = ('stock_date', 'company')
