@@ -221,8 +221,8 @@ export default {
         data.forEach(element => {
             let found = this.data.find(v=>v.index===element.index)
             if(element.error===true) {
-                found.error = true
-                found.note = element.note.toString()
+              found.error = true
+              found.note = element.note.toString()
             }
         })
 
@@ -244,8 +244,7 @@ export default {
         this.data.forEach(ele => {
           let obj = this.$copy(ele)
           var type = this.api.find3var('list','company-type', ele.type)
-
-            //check error
+          //check error
           if(type === undefined) {
               ele.error = true
               ele.note = this.api.getvalue(this.api.find3var('inform','task','company-type-invalid'))
@@ -499,6 +498,11 @@ export default {
           found = this.api.find3var('inform','import','industry-fields')
           this.path = 'Industry/'
         }
+        else if(name==='taindex') {
+          this.tophead = 'Giao việc nhập dữ liệu Chỉ số phân tích kỹ thuật'
+          found = this.api.find3var('inform','import','stock-data-fields')
+          this.path = 'Task_Taindex/'
+        }
         if(this.tophead)  this.msgInfo.push({message: found.value, type: 'success'})
       },
 
@@ -518,8 +522,8 @@ export default {
         let fileName = file.files[0].name
         //check file name is valid
         if (!(fileName.search('.xls') > 0 || fileName.search('.xlsx') > 0)) {
-            this.msgInfo.push({message: this.api.find3var('inform', 'import', 'file-type-invalid').value, type: 'error'} )
-            return
+          this.msgInfo.push({message: this.api.find3var('inform', 'import', 'file-type-invalid').value, type: 'error'} )
+          return
         }
 
         axios.post(this.connection.path + 'upload-file/', data=data)
@@ -566,7 +570,6 @@ export default {
 
       //check require field
       checkfieldlist() {
-          let requireFields = []
           let found = this.api.find3var('inform','import','task-fields')
           if(this.$route.query.type==='delete-task')
               found = this.api.find3var('inform','import','delete-task-fields')
@@ -578,7 +581,7 @@ export default {
               found = this.api.find3var('inform','import','company-fields')
           else if(this.$route.query.type==='batch-approve')
               found = this.api.find3var('inform','import','batch-approve-fields')
-          else if(this.$route.query.type==='stock-data')
+          else if(this.$route.query.type==='stock-data' || this.$route.query.type==='taindex')
             found = this.api.find3var('inform','import','stock-data-fields')
            else if(this.$route.query.type==='industry')
             found = this.api.find3var('inform','import','industry-fields')
@@ -609,6 +612,7 @@ export default {
       else if(this.$route.query.type==='batch-approve') this.verifyBatchApprove()
       else if(this.$route.query.type==='stock-data') this.verifyImportStockData()
       else if(this.$route.query.type==='industry') this.verifyIndustry()
+      else if(this.$route.query.type==='taindex') this.verifyImportStockData()
 
       let filter = this.data.filter(v=>v.error===true)
       if(filter.length>0) {

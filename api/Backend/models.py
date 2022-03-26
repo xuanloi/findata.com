@@ -2484,43 +2484,7 @@ class Stock_Price(models.Model):
     f02978 = models.FloatField(null=True) #lnst
     f02979 = models.FloatField(null=True) #vcsh
     f02981 = models.FloatField(null=True) #ps
-    #CHIBAOGIA
-    f02921=models.FloatField(null=True)
-    f02912=models.FloatField(null=True)
-    f02901=models.FloatField(null=True)
-    f02902=models.FloatField(null=True)
-    f02903=models.FloatField(null=True)
-    f02904=models.FloatField(null=True)
-    f02905=models.FloatField(null=True)
-    f02906=models.FloatField(null=True)
-    f02907=models.FloatField(null=True)
-    f02908=models.FloatField(null=True)
-    f02909=models.FloatField(null=True)
-    f02910=models.FloatField(null=True)
-    f02911=models.FloatField(null=True)
-    f02913=models.FloatField(null=True)
-    f02914=models.FloatField(null=True)
-    f02915=models.FloatField(null=True)
-    f02916=models.FloatField(null=True)
-    f02917=models.FloatField(null=True)
-    f02918=models.FloatField(null=True)
-    f02919=models.FloatField(null=True)
-    f02920=models.FloatField(null=True)
-    f02922=models.FloatField(null=True)
-    f02923=models.FloatField(null=True)
-    f02924=models.FloatField(null=True)
-    f02925=models.FloatField(null=True)
-    f02926=models.FloatField(null=True)
-    f02927=models.FloatField(null=True)
-    f02928=models.FloatField(null=True)
-    f02929=models.FloatField(null=True)
-    f02930=models.FloatField(null=True)
-    f02931=models.FloatField(null=True)
-    f02932=models.FloatField(null=True)
-    f02933=models.FloatField(null=True)
-    f02934=models.FloatField(null=True)
-    f02935=models.FloatField(null=True)
-
+   
     class Meta:
         db_table = 'stock_price'
         unique_together = ('stock_date', 'company')
@@ -2876,5 +2840,80 @@ class User_Setting(models.Model):
 
     class Meta:
         db_table = 'user_setting'
-        
-#==========================================================
+    
+
+#===========================================================
+class Task_Taindex(models.Model):
+    stock_date = models.DateField(null=False)
+    report_name = models.ForeignKey(Classification, null=True, related_name='+', on_delete=models.PROTECT)
+    assigner = models.ForeignKey(Account, null=True, related_name='+', on_delete=models.PROTECT)
+    recipient = models.ForeignKey(Account, null=True, related_name='+', on_delete=models.PROTECT)
+    assign_date =  models.DateTimeField(null = False)
+    due_date =  models.DateTimeField(null = False)
+    status =  models.ForeignKey(Classification, null=True, related_name='+', on_delete=models.PROTECT)
+    create_time = models.DateTimeField(null = False, auto_now_add=True)
+    update_time =  models.DateTimeField(null = True)
+    enable = models.BooleanField(default=True)
+    detail =  models.TextField(null=True, blank=True)
+    priority = models.BooleanField(default=False)
+    unit_price = models.FloatField(null=True)
+    into_money = models.FloatField(null=True)
+    entry_time = models.DateTimeField(null = True)
+    waiting1_time = models.DateTimeField(null = True)
+    waiting2_time = models.DateTimeField(null = True)
+    approve_time = models.DateTimeField(null = True)
+    history = models.TextField(null=True, blank= True)
+    message = models.TextField(null=True, blank= True)
+    file = models.ForeignKey(File, null=True, related_name='+', on_delete=models.PROTECT)
+    data_file = models.TextField(null=True, blank=True)
+  
+    class Meta:
+        db_table = 'task_taindex'
+        unique_together = ('stock_date', 'report_name')
+
+
+class Taindex(models.Model):
+    stock_date = models.DateField(null=False)
+    company = models.ForeignKey(Company, null=True, related_name='+', on_delete=models.PROTECT)
+    create_time = models.DateTimeField(null = True, auto_now_add=True)
+    task = models.ForeignKey(Task_Taindex, null=False, related_name='+', on_delete=models.PROTECT)
+    #Stock_Price_ADD_NEW_FIELD
+    f02921=models.FloatField(null=True)
+    f02901=models.FloatField(null=True)
+    f02902=models.FloatField(null=True)
+    f02903=models.FloatField(null=True)
+    f02904=models.FloatField(null=True)
+    f02905=models.FloatField(null=True)
+    f02906=models.FloatField(null=True)
+    f02907=models.FloatField(null=True)
+    f02908=models.FloatField(null=True)
+    f02909=models.FloatField(null=True)
+    f02910=models.FloatField(null=True)
+    f02911=models.FloatField(null=True)
+    f02912=models.FloatField(null=True)
+    f02913=models.FloatField(null=True)
+    f02914=models.FloatField(null=True)
+    f02915=models.FloatField(null=True)
+    f02916=models.FloatField(null=True)
+    f02917=models.FloatField(null=True)
+    f02918=models.FloatField(null=True)
+    f02919=models.FloatField(null=True)
+    f02920=models.FloatField(null=True)
+    f02932=models.FloatField(null=True)
+    f02933=models.FloatField(null=True)
+    f02934=models.FloatField(null=True)
+    f02935=models.FloatField(null=True)
+    f02923=models.FloatField(null=True)
+    f02924=models.FloatField(null=True)
+    f02925=models.FloatField(null=True)
+    f02926=models.FloatField(null=True)
+    f02927=models.FloatField(null=True)
+    f02928=models.FloatField(null=True)
+    f02929=models.FloatField(null=True)
+    f02930=models.FloatField(null=True)
+    f02931=models.FloatField(null=True)
+    f02922=models.FloatField(null=True)
+
+    class Meta:
+        db_table = 'taindex'
+        unique_together = ('stock_date', 'company')
