@@ -689,7 +689,7 @@ export default {
         mixing.download(this.connection.path + 'download-file/company_template.xlsx')
       else if(this.$route.query.type==='batch-approve')
         mixing.download(this.connection.path + 'download-file/approve_template.xlsx')
-      else if(this.$route.query.type==='stock-data')
+      else if(this.$route.query.type==='stock-data' || this.$route.query.type==='taindex')
         mixing.download(this.connection.path + 'download-file/stock_template.xlsx')
       else if(this.$route.query.type==='industry')
         mixing.download(this.connection.path + 'download-file/industry.xlsx')

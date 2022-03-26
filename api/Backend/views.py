@@ -607,7 +607,7 @@ def download_file(request, name):
     import time
     val = time.strftime('%Y%m%d%H%M%S')
     file_path = "Download/" + name
-    file_type = "application/vnd.ms-access" if name == 'DataEntry.mdb' else 'application/force-download'    
+    file_type = "application/vnd.ms-access" if name == 'DataEntry.mdb' else 'application/force-download'  
 
     if os.path.exists(file_path):
         with open(file_path, 'rb') as fh:
