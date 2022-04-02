@@ -1,4 +1,3 @@
-<!-- eslint-disable -->
 <template>
 <div>
     <section class="hero is-paddingless is-marginless">
@@ -92,15 +91,8 @@
 </template>
 
 <script>
-/* eslint-disable */
-import Vue from 'vue'
-
 import mixing from '@/assets/js/mixing.js'
-import TableFilter from '@/components/TableFilter.vue'
 import axios from 'axios'
-
-Vue.component('tablefilter', TableFilter)
-
 export default {
   props: ['task'],
   data () {

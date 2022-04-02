@@ -293,7 +293,7 @@ def validate_import(request, name):
             elif name=='Company':
                 filter = {'stock_code': obj['stock_code']}
 
-            elif name == 'Stock_Price' or name == 'Stock_Order' or name == 'Foreign_Order' or name == 'Foreign_Deal':
+            elif name == 'Stock_Price' or name == 'Stock_Order' or name == 'Foreign_Order' or name == 'Foreign_Deal' or name == 'Taindex' :
                 filter = {'stock_date': obj['stock_date'], 'company': obj['company']}
 
             elif name == 'Price_Live':

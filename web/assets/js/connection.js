@@ -84,9 +84,9 @@ export default class Connnection {
         {name: 'taindex', commit: undefined, url: 'data/Taindex/', url_detail: 'data-detail/Taindex/', params: {}}
     ]
 
-    path = 'http://61.28.238.196:8000/' 
+    //path = 'http://61.28.238.196:8000/' 
     //'http://data.findata.com.vn/' 
-    //path = 'http://127.0.0.1:8000/'
+    path = 'http://127.0.0.1:8000/'
     batchApi = []
     batchStatus = []
     batchData = []
