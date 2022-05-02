@@ -211,7 +211,7 @@
                 <td  style="min-width:365px"> <div class="vertical-center"> <span :style="getstyle(ele)"> {{ele.value}} </span> </div> </td>
                 <td :class="ele.locked===true? 'bg-yellow tooltip' : ''" :data-tooltip="ele.locked==true? ele.edit_note : ''">
                     <div class="vertical-center-right">
-                      <span :style="getstyle(ele)" v-if="ele.formula!=='' || preview===true || ele.readonly">{{models[ele.id]}}</span>
+                      <span :style="getstyle(ele)" v-if="!$empty(ele.formula) || preview===true || ele.readonly">{{models[ele.id]}}</span>
                         <div class="field" v-else>
                         <div class="control is-paddingless">
                             <input class="input font-small has-text-right" type="text" v-model="models[ele.id]" @keyup="checkValue(ele)">
@@ -223,7 +223,7 @@
                     <span class="icon has-text-danger" v-if="ele.error===true">
                         <i class="mdi mdi-close-circle-outline"></i>
                     </span>
-                    <a class="ml10" v-if="ele.formula!=='' && editable===true" @click="openEditForm(ele)">
+                    <a class="ml10" v-if="!$empty(ele.formula) && editable===true" @click="openEditForm(ele)">
                         <i class="mdi mdi-square-edit-outline fs22 has-text-dark"></i>
                     </a>
                     </div>    
@@ -239,7 +239,7 @@
                 <td> <span class="pl20"/> <div class="vertical-center"><span :style="getstyle(ele1)"> {{ele1.value}} </span> </div> </td>
                   <td :class="ele1.locked===true? 'bg-yellow tooltip' : ''" :data-tooltip="ele1.locked==true? ele1.edit_note : ''">
                <div class="vertical-center-right">
-                  <span :style="getstyle(ele1)" v-if="ele1.formula!=='' || preview===true"> {{models[ele1.id]}}</span>
+                  <span :style="getstyle(ele1)" v-if="!$empty(ele1.formula) || preview===true"> {{models[ele1.id]}}</span>
                     <div class="field" v-else>
                     <div class="control is-paddingless">
                         <input class="input font-small has-text-right" type="text" v-model="models[ele1.id]" @keyup="checkValue(ele1)">
@@ -251,7 +251,7 @@
                     <span class="icon has-text-danger" v-if="ele1.error===true">
                         <i class="mdi mdi-close-circle-outline"></i>
                     </span>
-                    <a class="ml10" v-if="ele1.formula!=='' && editable===true" @click="openEditForm(ele1)">
+                    <a class="ml10" v-if="!$empty(ele1.formula) && editable===true" @click="openEditForm(ele1)">
                         <i class="mdi mdi-square-edit-outline fs22 has-text-dark"></i>
                     </a>
                     </div>    
@@ -265,7 +265,7 @@
                 <td> <div class="vertical-center">  <span class="pl40"/><span :style="getstyle(ele2)"> {{ele2.value}} </span> </div></td>
                   <td :class="ele2.locked===true? 'bg-yellow tooltip' : ''" :data-tooltip="ele2.locked==true? ele2.edit_note : ''">
                   <div class="vertical-center-right">  
-                        <span :style="getstyle(ele2)" v-if="ele2.formula!=='' || preview===true">{{models[ele2.id]}}</span>
+                        <span :style="getstyle(ele2)" v-if="!$empty(ele2.formula) || preview===true">{{models[ele2.id]}}</span>
                         <div class="field" v-else>
                         <div class="control is-paddingless">
                             <input class="input font-small has-text-right" type="text" v-model="models[ele2.id]" @keyup="checkValue(ele2)">
@@ -277,7 +277,7 @@
                     <span class="icon has-text-danger" v-if="ele2.error===true">
                         <i class="mdi mdi-close-circle-outline"></i>
                     </span>
-                    <a class="ml10" v-if="ele2.formula!=='' && editable===true" @click="openEditForm(ele2)">
+                    <a class="ml10" v-if="!$empty(ele2.formula) && editable===true" @click="openEditForm(ele2)">
                         <i class="mdi mdi-square-edit-outline fs22 has-text-dark"></i>
                     </a>
                     </div>    
@@ -291,7 +291,7 @@
                 <td> <div class="vertical-center"> <span class="pl60"/> <span :style="getstyle(ele3)"> {{ele3.value}} </span> </div> </td>
                 <td :class="ele3.locked===true? 'bg-yellow tooltip' : ''" :data-tooltip="ele3.locked==true? ele3.edit_note : ''">
                   <div class="vertical-center-right"> 
-                        <span :style="getstyle(ele3)" v-if="ele3.formula!=='' || preview===true"> {{models[ele3.id]}}</span>
+                        <span :style="getstyle(ele3)" v-if="!$empty(ele3.formula) || preview===true"> {{models[ele3.id]}}</span>
                         <div class="field" v-else>
                         <div class="control is-paddingless">
                             <input class="input font-small has-text-right" type="text" v-model="models[ele3.id]" @keyup="checkValue(ele3)">
@@ -303,7 +303,7 @@
                     <span class="icon has-text-danger" v-if="ele3.error===true">
                         <i class="mdi mdi-close-circle-outline"></i>
                     </span>
-                      <a class="ml10" v-if="ele3.formula!=='' && editable===true" @click="openEditForm(ele3)">
+                      <a class="ml10" v-if="!$empty(ele3.formula) && editable===true" @click="openEditForm(ele3)">
                         <i class="mdi mdi-square-edit-outline fs22 has-text-dark"></i>
                     </a>
                     </div>    
@@ -317,7 +317,7 @@
                 <td><div class="vertical-center"> <span class="pl80"/> <span :style="getstyle(ele4)"> {{ele4.value}} </span></div></td>
                 <td :class="ele4.locked===true? 'bg-yellow tooltip' : ''" :data-tooltip="ele4.locked==true? ele4.edit_note : ''">
                 <div class="vertical-center-right">
-                        <span :style="getstyle(ele4)" v-if="ele4.formula!=='' || preview===true"> {{models[ele4.id]}} </span>
+                        <span :style="getstyle(ele4)" v-if="!$empty(ele4.formula) || preview===true"> {{models[ele4.id]}} </span>
                         <div class="field" v-else>
                         <div class="control is-paddingless">
                             <input class="input font-small has-text-right" type="text" v-model="models[ele4.id]" @keyup="checkValue(ele4)">
@@ -329,7 +329,7 @@
                     <span class="icon has-text-danger" v-if="ele4.error===true">
                         <i class="mdi mdi-close-circle-outline"></i>
                     </span>
-                    <a class="ml10" v-if="ele4.formula!=='' && editable===true" @click="openEditForm(ele4)">
+                    <a class="ml10" v-if="!$empty(ele4.formula) && editable===true" @click="openEditForm(ele4)">
                         <i class="mdi mdi-square-edit-outline fs22 has-text-dark"></i>
                     </a>
                     </div>    
@@ -343,7 +343,7 @@
                   <td><div class="vertical-center">  <span class="pl100"/> <span :style="getstyle(ele5)">  {{ele5.value}} </span></div></td>
                     <td :class="ele5.locked===true? 'bg-yellow tooltip' : ''" :data-tooltip="ele5.locked==true? ele5.edit_note : ''">
                     <div class="vertical-center-right">
-                      <span :style="getstyle(ele5)" v-if="ele5.formula!=='' || preview===true"> {{models[ele5.id]}} </span>
+                      <span :style="getstyle(ele5)" v-if="!$empty(ele5.formula) || preview===true"> {{models[ele5.id]}} </span>
                           <div class="field" v-else>
                           <div class="control is-paddingless">
                               <input class="input font-small has-text-right" type="text" v-model="models[ele5.id]" @keyup="checkValue(ele5)">
@@ -355,7 +355,7 @@
                       <span class="icon has-text-danger" v-if="ele5.error===true">
                           <i class="mdi mdi-close-circle-outline"></i>
                       </span>
-                      <a class="ml10" v-if="ele5.formula!=='' && editable===true" @click="openEditForm(ele5)">
+                      <a class="ml10" v-if="!$empty(ele5.formula) && editable===true" @click="openEditForm(ele5)">
                           <i class="mdi mdi-square-edit-outline fs22 has-text-dark"></i>
                       </a>
                       </div>    
