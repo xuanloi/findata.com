@@ -1134,13 +1134,13 @@ export default {
         }
 
         let list = [], isadded = true
-        let filter = this.data.filter(v=>v.formula.indexOf(ele.item)>-1)
+        let filter = this.data.filter(v=>this.$empty(v.formula)? false : v.formula.indexOf(ele.item)>-1)
         list = list.concat(filter)
 
         while (isadded===true) {
             let count = mixing.unique(list, ['item']).length
             list.forEach(ele => {
-                filter = this.data.filter(v=>v.formula.indexOf(ele.item)>-1)
+                filter = this.data.filter(v=>this.$empty(v.formula)? false : v.formula.indexOf(ele.item)>-1)
                 list = list.concat(filter)
             })
             let countNext = mixing.unique(list, ['item']).length
