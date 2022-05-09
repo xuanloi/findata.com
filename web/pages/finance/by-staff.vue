@@ -177,7 +177,7 @@ export default {
 
     changeDate() {
       let arr = this.$fromToDate(this.start, this.end)
-      this.$router.push({path: '/finance/by-staft', query: {startdate: this.$dayjs(this.start).format('YYYY-MM-DD'), enddate: this.$dayjs(this.end).format('YYYY-MM-DD')}})
+      this.$router.push({path: '/finance/by-staff', query: {startdate: this.$dayjs(this.start).format('YYYY-MM-DD'), enddate: this.$dayjs(this.end).format('YYYY-MM-DD')}})
       this.loadData(arr)
     },
 
