@@ -1,6 +1,5 @@
-<!-- eslint-disable -->
 <template>
-<div v-if="rights">
+  <div v-if="rights">
     <TopMenu/>
     <section class="hero is-fullheight-with-navbar">
   <div class="hero-body mt-5" style="align-items: flex-start">
@@ -12,7 +11,6 @@
           <i :class="v.icon? v.icon : 'mdi mdi-menu'"/>
             </span>
             </nuxt-link>
-
             <a class="box-icon" @mousemove="openMenu(v)" v-else>
                <span class="vertical-center">
                <i :class="v.icon? v.icon : 'mdi mdi-menu'"/>
@@ -20,7 +18,7 @@
             </a>
             <p class="fs20 fb600 has-text-grey-darker mt-1"> {{v.value}}</p>
 
-    <div class="box px-2 py-2 mx-3" style="background-color:white" v-if="rights.find(x=>x.classify===v.code) && showlist.find(x=>x.id===v.id)">
+    <div class="box px-1 py-2 mr-2" style="background-color:white" v-if="rights.find(x=>x.classify===v.code) && showlist.find(x=>x.id===v.id)">
         <p class="content has-text-left py-0 my-0" style="max-height:132px; overflow-y: auto;">
           <ul class="mb-1 mt-1">
             <li class="pb-1 border-bottom fs15" v-for="(ele,key) in rights.filter(x=>x.classify===v.code)" :key="key">

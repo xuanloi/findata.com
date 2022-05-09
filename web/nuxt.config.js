@@ -32,6 +32,7 @@ module.exports = {
     '~/plugins/lang',
     '~/plugins/components',
     '~/plugins/calculation',
+    '~/plugins/calendar',
     { src: '~/plugins/vuex-persist', ssr: false }
   ],
 

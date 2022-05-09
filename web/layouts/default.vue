@@ -24,9 +24,11 @@ export default {
 
   watch: {
     'connection.getdataReady': function(newVal) {
-      if (newVal==='error') {
+      if(newVal==='error') {
         this.ready = true
         this.$router.push({path: '/error'})
+      } else if(newVal==='success') {
+        this.fillData(this.syspara)
       }
     },
 
@@ -48,9 +50,30 @@ export default {
           } 
         }
       }
-    },
+    }
+  },
 
-    syspara: function(newVal) {
+  computed: {
+    api: {
+      get: function() {return this.$store.state.api},
+      set: function(val) {this.$store.commit("updateApi", {api: val})}
+    },
+    syspara: {
+      get: function() {return this.$store.state.syspara},
+      set: function(val) {this.$store.commit("updateSystemParameter", {syspara: val})}
+    },
+    login: {
+      get: function() {return this.$store.state.login},
+      set: function(val) {this.$store.commit("updateLogin", { login: val })}
+    },
+    tablesetting: {
+      get: function() {return this.$store.state.tablesetting},
+      set: function(val) {this.$store.commit("updateTableSetting", {tablesetting: val})}
+    }
+  },
+
+  methods: {
+    fillData(newVal) {
       if(newVal) {
         if(!this.api) {
           let _api = new Api()
@@ -70,23 +93,6 @@ export default {
         }
         else this.ready = true
       }
-    }
-  },
-
-  computed: {
-    api: {
-      get: function() {return this.$store.state.api},
-      set: function(val) {this.$store.commit("updateApi", {api: val})}
-    },
-
-    syspara: {
-      get: function() {return this.$store.state.syspara},
-      set: function(val) {this.$store.commit("updateSystemParameter", {syspara: val})}
-    },
-
-    login: {
-      get: function() {return this.$store.state.login},
-      set: function(val) {this.$store.commit("updateLogin", { login: val })}
     }
   }
 }
