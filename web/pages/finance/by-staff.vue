@@ -54,7 +54,7 @@ export default {
       end: undefined,
       errors: [],
       defaultFields: [],
-      title: 'Báo cáo tổng kết công việc',
+      title: 'Tổng kết công việc theo nhân viên',
       connlist: []
     }
   },
