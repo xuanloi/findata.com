@@ -50,6 +50,9 @@ export default class Export {
     }
 
     exportItem() {
+        var empty = function(val) {
+            return (val === undefined || val === null || val === '' || val==="")? true : false
+        }
         var _filename  = this.getdatetime() + '-' + this.filename + '.xlsx'
         let val = ''
         let ele = {}
@@ -87,7 +90,7 @@ export default class Export {
             }
 
             ele = {item: element.item, value: val + element.value, auto_calc: element.formula !== ''? '+' : '',
-            input: element.formula === ''? null :  this.excelFormula(element.formula)}
+            input: empty(element.formula)? null :  this.excelFormula(element.formula)}
             list.push(ele)
         })
 
