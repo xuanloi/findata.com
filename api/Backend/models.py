@@ -676,6 +676,9 @@ class BSNH(models.Model):
     f02732 = models.FloatField(null=True)
     f02732 = models.FloatField(null=True)
     f02955 = models.FloatField(null=True)
+    f03012 = models.FloatField(null=True)
+    f03013 = models.FloatField(null=True)
+    f03014 = models.FloatField(null=True)
     #BSNH_ADD_NEW_FIELD
     task = models.ForeignKey(Task, null=False, related_name='bsnh_task', on_delete=models.PROTECT)
 
