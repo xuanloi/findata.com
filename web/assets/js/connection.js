@@ -95,10 +95,10 @@ export default class Connnection {
         {name: 'companynews', commit: undefined, url: 'data/Company_News/', url_detail: 'data-detail/Company_News/', params: {}}
     ]
 
-    //path = 'http://61.28.238.196:8000/' 
+    path = 'http://61.28.238.196:8000/' 
     //'http://data.findata.com.vn/' 
     //path = 'http://127.0.0.1:8000/'
-    path = 'http://localhost:8000/'
+    //path = 'http://localhost:8000/'
     batchApi = []
     batchStatus = []
     batchData = []
