@@ -80,6 +80,12 @@ $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
+$tabborder: #09B412;
+$tabs-boxed-link-active-border-color: $tabborder;
+$tabs-border-bottom-color: $tabborder;
+$tabs-link-active-color:  $tabborder;
+
+
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";

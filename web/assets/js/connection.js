@@ -31,7 +31,7 @@ export default class Connnection {
         {id: 28, name: 'cfgtbhreport', commit: undefined, url: 'data/CFGTBH/', url_detail: 'data-detail/CFGTBH/', params:  {}},
 
         {id: 63, name: 'taskobj', commit: undefined, url: 'data/Task/', url_detail: 'data-detail/Task/', params:  {}},
-        {id: 29, name: 'companylist', commit: 'updateCompanyList', url: 'data/Company/', params:  {page: -1, values: 'id,name,short_name,address,tax_code,stock_code,listed,listed_on,create_time,enable,detail,type,type__code,update_time,factor,industry,industry__level1_name,industry__level1_code,industry__level2_name,industry__level2_code,industry__level3_name,industry__level3_code'}},    
+        {id: 29, name: 'companylist', commit: 'updateCompanyList', url: 'data/Company/', url_detail: 'data-detail/Company/', params:  {page: -1, values: 'id,name,short_name,address,tax_code,stock_code,listed,listed_on,create_time,enable,detail,type,type__code,update_time,factor,industry,industry__level1_name,industry__level1_code,industry__level2_name,industry__level2_code,industry__level3_name,industry__level3_code'}},    
         {id: 54, name: 'email', commit: undefined, url: 'send-email/', params: {}},
         {id: 55, name: 'authentication', commit: undefined, url: 'data/Authentication/', params: {}},
         {id: 56, name: 'messagelist', commit: 'updateMessageList', url: 'data/Message/', params: {}},
@@ -81,12 +81,24 @@ export default class Connnection {
         //end
         {name: 'analysisreport', url: 'data/Analysis_Report/', url_detail: 'data-detail/Analysis_Report/', params: {values:'id,name,file,issue_date,company,company__stock_code,company__name,ticker,expert,content,create_time,create_time__date,total_pages', sort: '-issue_date'}},
         {name: 'tasktaindex', commit: undefined, url: 'data/Task_Taindex/', url_detail: 'data-detail/Task_Taindex/', params: {}},
-        {name: 'taindex', commit: undefined, url: 'data/Taindex/', url_detail: 'data-detail/Taindex/', params: {}}
+        {name: 'taindex', commit: undefined, url: 'data/Taindex/', url_detail: 'data-detail/Taindex/', params: {}},
+        {name: 'taskprofile', commit: undefined, url: 'data/Task_Profile/', url_detail: 'data-detail/Task_Profile/', params: {}},
+        {name: 'document', commit: undefined, url: 'data/Document/', url_detail: 'data-detail/Document/', params: {}},
+        {name: 'expert', path: 'path', url: 'data/Expert/', url_detail: 'data-detail/Expert/', params: {}},
+        {name: 'author', commit: undefined, url: 'data/Author/', url_detail: 'data-detail/Author/', params: {}},
+        {name: 'people', commit: undefined, url: 'data/People/', url_detail: 'data-detail/People/', params: {}},
+        {name: 'privateholder', commit: undefined, url: 'data/Private_Holder/', url_detail: 'data-detail/Private_Holder/', params: {}},
+        {name: 'orgholder', commit: undefined, url: 'data/Org_Holder/', url_detail: 'data-detail/Org_Holder/', params: {}},
+        {name: 'relation', commit: undefined, url: 'data/Relation/', url_detail: 'data-detail/Relation/', params: {}},
+        {name: 'management', commit: undefined, url: 'data/Management/', url_detail: 'data-detail/Management/', params: {}},
+        {name: 'subsidiary', commit: undefined, url: 'data/Subsidiary/', url_detail: 'data-detail/Subsidiary/', params: {}},
+        {name: 'companynews', commit: undefined, url: 'data/Company_News/', url_detail: 'data-detail/Company_News/', params: {}}
     ]
 
-    path = 'http://61.28.238.196:8000/' 
+    //path = 'http://61.28.238.196:8000/' 
     //'http://data.findata.com.vn/' 
     //path = 'http://127.0.0.1:8000/'
+    path = 'http://localhost:8000/'
     batchApi = []
     batchStatus = []
     batchData = []

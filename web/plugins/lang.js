@@ -298,7 +298,8 @@ Vue.use( {
     },
 
     Vue.prototype.$delete = function(arr, idx) {
-      this.$delete(arr, idx)
+      //this.$delete(arr, idx)
+      arr.splice(idx, 1)
     }
     
     Vue.prototype.$height = function(id) {
@@ -308,30 +309,8 @@ Vue.use( {
       
     Vue.prototype.$linkSetting = function(option) {
       var link = undefined
-      let list = ['finance', 'industry-comparison', 'multidimensional-fa', 'dupont']
-      let name = this.$nonAccent(option.name) + '-' + option.id
-      if(option.stock_code) link = {path: '/company/' + option.stock_code}
-      else if(option.classify__code==='priceboard') link = {path: '/priceboard/' + name }
-      else if(option.classify__code==='screener') link = {path: '/screener/' + name }
-      else if(option.classify__code==='industry-structure') link = {path: '/industry-analytics/' + name, query: {tab: 'structure'}}
-      else if(option.classify__code==='industry-ratio') link = {path: '/industry-analytics/' + name, query: {tab: 'ratio'}}
-      else if(list.findIndex(v=>v===option.classify__code)>=0) link = {path: '/company/' + name}
-      else if(option.classify__code==='data-field') link = {path: '/data-field/', query: {setting: option.id}}
-      else if(option.uid) link = {path: '/people/' + name}
+      if(option.classify__code==='data-field') link = {path: '/data-field/', query: {setting: option.id}}
       return link
-    }
-
-    Vue.prototype.$commConnection = function(connection, companyId, topicId, loginId) {
-      let values = 'id,company,creator,creator__display_name,creator__avatar,image,create_time,parent,topic,comment'
-      let found = this.$copy(connection.find('companycomment'))
-      let filter = {company: companyId, deleted: 0, topic: topicId}
-      found.params = {values: values, page: 1, perpage: 1, filter: filter, sort: this.sortaz? 'create_time' : '-create_time'}
-      
-      let conn1 = this.$copy(connection.find('companynote'))
-      let values1 = 'id,company,creator,creator__display_name,creator__avatar,create_time,topic,comment'
-      filter = {company: companyId, deleted: 0, creator: loginId, topic: topicId}
-      conn1.params = {values: values1, page: 1, perpage: 1, filter: filter, sort: this.sortaz? 'create_time' : '-create_time'}
-      return [found, conn1]
     }
 
     Vue.prototype.$clone = function(obj) {
@@ -351,18 +330,6 @@ Vue.use( {
           }
       }
       return temp
-    }
-    
-    Vue.prototype.$openLink = function(newVal, event) {
-      let url = undefined, link = '/company/' + newVal.company__stock_code
-      if(event==='finance') url = {path: link}
-      else if(event==='dupont') url = {path: link, query: {tab: 'finance', subtab: 'dupont'}}
-      else if(event==='chart') url = {path: link,query: {tab: 'finance', subtab: 'structure'}}
-      else if(event==='team') url = {path: link, query: {tab: 'company', subtab: 'team'}}
-      if(url) {
-        let routeData = this.$router.resolve(url)
-        window.open(routeData.href, '_blank')
-      }
     }
 
     Vue.prototype.$color = function(i) {

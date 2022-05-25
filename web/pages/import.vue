@@ -445,6 +445,60 @@ export default {
         })
       },
 
+      verifyImportTaskProfile() {
+        this.importlist = []
+        this.data.forEach(ele => {
+          let obj = mixing.copy(ele)
+          let found = this.companylist.find(v=>v.stock_code===ele.company)
+          if(found===undefined) {
+              ele.error = true
+              ele.note = 'Mã chứng khoán không tồn tại'
+          } else obj.company = found.id
+
+          found = this.api.find3var('list', 'report-period', ele.report_period)
+          if(found===undefined) {
+              ele.error = true
+              ele.note = 'Kỳ báo cáo không hợp lệ'
+          } else obj.report_period = found.id
+
+          if(mixing.isEmpty(ele.year)===true || mixing.isNumber(ele.year)===false) {
+              ele.error = true
+              ele.note = 'Năm không hợp lệ'
+          }
+
+          found = this.api.find3var('list', 'report-name', ele.report_name)
+            if(found===undefined) {
+                ele.error = true
+                ele.note = 'Tên báo cáo không hợp lệ'
+            } else {
+              obj.report_name = found.id
+              if(obj.company_type!==undefined) {
+                let name = ele.report_name==='LCTT-TT' || ele.report_name==='LCTT-GT'? 'LCTT' : ele.report_name
+                obj.unit_price = this.api.find3var('unit-price', obj.company_type, name).value
+                obj.into_money = obj.company_factor *  obj.unit_price
+              }
+            }
+
+          found = this.accountlist.find(v=>v.email===ele.assigner)
+          if(found===undefined) {
+              ele.error = true
+              ele.note = 'Người giao việc không tồn tại'
+          } else obj.assigner = found.id
+
+          found = this.accountlist.find(v=>v.email===ele.recipient)
+          if(found===undefined) {
+              ele.error = true
+              ele.note = 'Tên nhận việc không tồn tại'
+          } else obj.recipient = found.id
+
+          if(mixing.isEmpty(ele.priority)===true || mixing.isNumber(ele.priority)===false) {
+            ele.error = true
+            ele.note = 'Giá trị ưu tiên không hợp lệ'
+          }
+          this.importlist.push(obj)
+        })
+      },
+
       verifyIndustry() {
         this.importlist = this.data
       },
@@ -501,6 +555,11 @@ export default {
           this.tophead = 'Giao việc nhập dữ liệu Chỉ số phân tích kỹ thuật'
           found = this.api.find3var('inform','import','stock-data-fields')
           this.path = 'Task_Taindex/'
+        }
+        else if(name==='task-profile') {
+          this.tophead = 'Giao việc nhập dữ liệu Hồ sơ công ty'     
+          found = this.api.find3var('inform','import','task-profile-fields')
+          this.path = 'Task_Profile/'
         }
         if(this.tophead)  this.msgInfo.push({message: found.value, type: 'success'})
       },
@@ -586,6 +645,8 @@ export default {
             found = this.api.find3var('inform','import','industry-fields')
           else if(this.$route.query.type==='taindex')
             found = this.api.find3var('inform','import','stock-data-fields')
+          else if(this.$route.query.type==='task-profile')
+            found = this.api.find3var('inform','import','task-profile-fields')
 
           if(found !== undefined) this.requireFields = found.detail.split(',')
           let misslist = []
@@ -613,6 +674,7 @@ export default {
       else if(this.$route.query.type==='stock-data') this.verifyImportStockData()
       else if(this.$route.query.type==='industry') this.verifyIndustry()
       else if(this.$route.query.type==='taindex') this.verifyImportStockData()
+      else if(this.$route.query.type==='task-profile') this.verifyImportTaskProfile()
       let filter = this.data.filter(v=>v.error===true)
       if(filter.length>0) {
         this.msgInfo.push({message: 'Dữ liệu có lỗi', type: 'error'})
@@ -694,6 +756,8 @@ export default {
         mixing.download(this.connection.path + 'download-file/industry.xlsx')
       else if(this.$route.query.type==='taindex')
         mixing.download(this.connection.path + 'download-file/task_taindex_template.xlsx')
+      else if(this.$route.query.type==='task-profile')
+        mixing.download(this.connection.path + 'download-file/task_profile_template.xlsx')
     }
   }
 }

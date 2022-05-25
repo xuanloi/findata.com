@@ -1,4 +1,3 @@
-<!-- eslint-disable -->
 <template>
   <nav class="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
    <div class="navbar-brand">
@@ -20,8 +19,11 @@
 
 <div id="navMenu" class="navbar-menu pl10">
 <div class="navbar-start" style="flex-grow: 1; justify-content: center" v-if="currentType==='tophead'">
-<span class="navbar-item" style="font-size:18px"> {{tophead===undefined? '' : tophead}}</span>
- </div>
+  <div class="navbar-item" style="font-size:18px" v-if="tophead? tophead.indexOf('<')>=0 : false">
+    <component :is="compiledComponent(tophead)" @clickevent="$emit($event)"/>
+  </div>
+   <span class="navbar-item" style="font-size:18px" v-else> {{tophead===undefined? '' : tophead}}</span>
+</div>
 
 <div class="navbar-start" style="flex-grow: 1; justify-content: center" v-else-if="currentType==='search'">
 <div class="navbar-item">
@@ -293,7 +295,6 @@ props: ['type', 'tophead', 'enableDownload'],
   created() {
     if(this.type!==undefined) this.currentType = this.$copy(this.type)
     if(!this.login) return
-
     //get task summary
     var roleid = this.$empty(this.login.type)===false? this.login.type.id : ''
     var teamid = this.$empty(this.login.team)===false? this.login.team.id : ''
@@ -344,47 +345,38 @@ computed: {
     get: function() {return this.$store.state.api},
     set: function(val) {this.$store.commit("updateApi", {api: val})}
   },
-
   rights: {
     get: function() {return this.$store.state.rights },
     set: function(val) {this.$store.commit('updateRights', {rights: val})}
   },
-
   login: {
     get: function() {return this.$store.state.login},
     set: function(val) {this.$store.commit("updateLogin", { login: val })}
   },
-
   menuaction: {
     get: function() {return this.$store.state.menuaction},
     set: function(val) {this.$store.commit('updateMenuAction', {menuaction: val})}
   },
-
   companylist: {
     get: function() {return this.$store.state.companylist},
     set: function(val) {this.$store.commit('updateCompanyList', {companylist: val})}
   },
-
   accountlist: {
     get: function() {return this.$store.state.accountlist},
     set: function(val) {this.$store.commit('updateAccountList', {accountlist: val})}
   },
-
   ismobile: {
     get: function() {return this.$store.state.ismobile},
     set: function(val) {this.$store.commit('updateIsMobile', {ismobile: val})}
   },
-
   notification: {
     get: function() {return this.$store.state.notification},
     set: function(val) {this.$store.commit('updateNotification', {notification: val})}
   },
-
   hasnews: {
     get: function() {return this.$store.state.hasnews},
     set: function(val) {this.$store.commit('updateHasNews', {hasnews: val})}
   },
-
   pagetask: {
     get: function() {return this.$store.state.pagetask},
     set: function(val) {this.$store.commit('updatePageTask', {pagetask: val})}
@@ -392,10 +384,14 @@ computed: {
 },
 
  methods: {
+  compiledComponent(value) {
+    return {
+      template: `${value}`
+    }
+  },
   formatDate(v) {
     return mixing.yyyymmddhhmm(new Date(v))
   },
-
   openlink(v, i) {
     let ele = this.$copy(v)
     if(!ele.seen) {

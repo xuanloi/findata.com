@@ -645,24 +645,16 @@
 </template>
 
 <script>
-/* eslint-disable */
 import Vue from 'vue'
 import Export from '@/assets/js/export.js'
 import mixing from '@/assets/js/mixing.js'
-
 import axios from 'axios'
 import "bulma-extensions/bulma-steps/dist/css/bulma-steps.min.css"
 import login from '@/pages/login.vue'
-import TopMenu from '@/components/TopMenu'
-import Footer from '@/components/Footer'
 import media from '@/pages/media.vue'
 import socket from '~/plugins/socket.io.js'
-
-Vue.component('Topmenu', TopMenu)
-Vue.component('Footer', Footer)
 Vue.component('login', login)
 Vue.component('media', media)
-
 export default {
    data() {
       return {

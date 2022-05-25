@@ -301,6 +301,10 @@ def validate_import(request, name):
 
             elif name=='Industry':
                 filter = {'level3_code': obj['level3_code']}
+            
+            elif name=='Task_Profile':
+                filter = {'company': obj['company'], 'report_period': obj['report_period'], 'year': obj['year'], 'report_name': obj['report_name']}
+ 
    
             thelist = Model.objects.filter(**filter)
             if len(thelist)==0:

@@ -2936,3 +2936,166 @@ class Taindex(models.Model):
     class Meta:
         db_table = 'taindex'
         unique_together = ('stock_date', 'company')
+
+
+#=========================Company Profile========================
+class People(models.Model):
+    name = models.CharField(max_length = 50, null=False)
+    uid = models.CharField(max_length = 20, null=False, unique=True)
+    legal_id = models.CharField(max_length = 20, null=True)
+    dob = models.DateField(null = True)
+    phone = models.CharField(max_length = 20, null=True)
+    email = models.CharField(max_length = 50, null=True)
+    address = models.CharField(max_length = 200, null=True)
+    avatar = models.CharField(max_length = 200, null=True)
+    degree = models.CharField(max_length = 200, null=True)
+    domicile = models.CharField(max_length = 200, null=True)
+    create_time = models.DateTimeField(null = True, auto_now_add=True)
+
+    class Meta:
+        db_table = 'people'
+
+
+class Management(models.Model):
+    people = models.ForeignKey(People, null=False, related_name='management', on_delete=models.PROTECT)
+    company = models.ForeignKey(Company, null=False, related_name='+', on_delete=models.PROTECT)
+    position = models.ForeignKey(Classification, null=False, related_name='+', on_delete=models.PROTECT)
+    date = models.CharField(max_length=20, null=True)
+    create_time = models.DateTimeField(null = True, auto_now_add=True)    
+
+    class Meta:
+        db_table = 'management'
+        unique_together = ('people', 'company', 'position')
+
+
+class Private_Holder(models.Model):
+    people = models.ForeignKey(People, null=False, related_name='+', on_delete=models.PROTECT)
+    company = models.ForeignKey(Company, null=False, related_name='+', on_delete=models.PROTECT)
+    number_share = models.PositiveBigIntegerField(null=False)
+    percentage =  models.FloatField(null=True)
+    create_time = models.DateTimeField(null = True, auto_now_add=True) 
+    
+    class Meta:
+        db_table = 'private_holder'
+        unique_together = ('people', 'company')
+
+
+class Org_Holder(models.Model):
+    organization = models.ForeignKey(Company, null=False, related_name='+', on_delete=models.PROTECT)
+    company = models.ForeignKey(Company, null=False, related_name='+', on_delete=models.PROTECT)
+    number_share = models.PositiveBigIntegerField(null=False)
+    percentage =  models.FloatField(null=True)
+    create_time = models.DateTimeField(null = True, auto_now_add=True)    
+    
+    class Meta:
+        db_table = 'org_holder'
+        unique_together = ('organization', 'company')
+
+
+class Relation(models.Model):
+    people = models.ForeignKey(People, null=False, related_name='+', on_delete=models.PROTECT)
+    other = models.ForeignKey(People, null=False, related_name='+', on_delete=models.PROTECT)
+    type = models.ForeignKey(Classification, null=False, related_name='+', on_delete=models.PROTECT)
+    create_time = models.DateTimeField(null = True, auto_now_add=True)
+
+    class Meta:
+        db_table = 'relation'
+        unique_together = ('people', 'other')
+
+
+class Expert(models.Model):
+    name = models.CharField(max_length = 50, null=False)
+    email = models.CharField(max_length = 50, null=False, unique=True)
+    phone = models.CharField(max_length = 20, null=True)
+    company = models.ForeignKey(Company, null=False, related_name='+', on_delete=models.PROTECT)
+    create_time = models.DateTimeField(null = True, auto_now_add=True)
+
+    class Meta:
+        db_table = 'expert'
+
+
+#=====Task Profile==============================================
+class Task_Profile(models.Model):
+    company = models.ForeignKey(Company, null=True, related_name='+', on_delete=models.PROTECT)
+    report_period = models.ForeignKey(Classification, null=True, related_name='+', on_delete=models.PROTECT)
+    year = models.IntegerField(null=False)
+    report_name = models.ForeignKey(Classification, null=True, related_name='+', on_delete=models.PROTECT)
+    assigner = models.ForeignKey(Account, null=True, related_name='+', on_delete=models.PROTECT)
+    recipient = models.ForeignKey(Account, null=True, related_name='+', on_delete=models.PROTECT)
+    assign_date =  models.DateTimeField(null = False)
+    due_date =  models.DateTimeField(null = False)
+    status =  models.ForeignKey(Classification, null=True, related_name='+', on_delete=models.PROTECT)
+    create_time = models.DateTimeField(null = False, auto_now_add=True)
+    update_time =  models.DateTimeField(null = True)
+    approve_time = models.DateTimeField(null = True)
+    enable = models.BooleanField(default=True)
+    detail =  models.TextField(null=True, blank=True)
+    priority = models.BooleanField(default=False)
+    company_factor = models.FloatField(null=True)
+    unit_price = models.FloatField(null=True)
+    into_money = models.FloatField(null=True)
+    entry_time = models.DateTimeField(null = True)
+    waiting1_time = models.DateTimeField(null = True)
+    waiting2_time = models.DateTimeField(null = True)
+    history = models.TextField(null=True, blank= True)
+    message = models.TextField(null=True, blank= True)
+
+    class Meta:
+        db_table = 'task_profile'
+        unique_together = ('company', 'report_period', 'year', 'report_name')
+
+
+class Document(models.Model):
+    company = models.ForeignKey(Company, null=False, related_name='+', on_delete=models.PROTECT)
+    title = models.CharField(max_length=200, null=False)
+    type = models.ForeignKey(Classification, null=False, related_name='+', on_delete=models.PROTECT)
+    issue_date = models.DateField(null = True)
+    year = models.PositiveIntegerField(null=True)
+    file = models.ForeignKey(File, null=True, related_name='+', on_delete=models.PROTECT)
+    source = models.ForeignKey(Company, null=True, related_name='+', on_delete=models.PROTECT)
+    task = models.ForeignKey(Task_Profile, null=False, related_name='+', on_delete=models.PROTECT)
+    create_time = models.DateTimeField(null = True, auto_now_add=True)
+    note = models.TextField(null=True)
+    number_page = models.PositiveIntegerField(null=True)
+
+    class Meta:
+        db_table = 'document'
+
+
+class Author(models.Model):
+    document = models.ForeignKey(Document, null=False, related_name='+', on_delete=models.PROTECT)
+    expert = models.ForeignKey(Expert, null=False, related_name='+', on_delete=models.PROTECT)
+    create_time = models.DateTimeField(null = True, auto_now_add=True)
+
+    class Meta:
+        db_table = 'author'
+        unique_together = ('document', 'expert')
+
+
+class Subsidiary(models.Model):
+    company = models.ForeignKey(Company, null=False, related_name='+', on_delete=models.PROTECT)
+    subsidiary = models.ForeignKey(Company, null=False, related_name='+', on_delete=models.PROTECT)
+    capital = models.FloatField(null=True)
+    percentage =  models.FloatField(null=True)
+    voting_rate =  models.FloatField(null=True)
+    type = models.ForeignKey(Classification, null=False, related_name='+', on_delete=models.PROTECT)
+    create_time = models.DateTimeField(null = True, auto_now_add=True)
+
+    class Meta:
+        db_table = 'subsidiary'
+        unique_together = ('company', 'subsidiary')
+
+
+class Company_News(models.Model):
+    company = models.ForeignKey(Company, null=False, related_name='+', on_delete=models.PROTECT)
+    title = models.CharField(max_length=200, null=False)
+    subtitle = models.CharField(max_length=500, null=True)
+    content = models.TextField(null=False)
+    creator = models.ForeignKey(Account, null=False, related_name='+', on_delete=models.PROTECT)
+    image = models.CharField(max_length=200, null=True)
+    note = models.TextField(null=True)
+    create_time = models.DateTimeField(null = True, auto_now_add=True)
+    update_time = models.DateTimeField(null = True)
+
+    class Meta:
+        db_table = 'company_news'
