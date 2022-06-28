@@ -127,6 +127,10 @@ class Company(models.Model):
     update_time = models.DateTimeField(null = True)
     factor = models.FloatField(null=False, default=1)
     industry = models.ForeignKey(Industry, null=True, related_name='+', on_delete=models.PROTECT)
+    logo = models.CharField(max_length = 200, null=True)
+    email = models.CharField(max_length = 100, null=True)
+    website = models.CharField(max_length = 100, null=True)
+    phone = models.CharField(max_length = 20, null=True)
 
     class Meta:
         db_table = 'Company'
