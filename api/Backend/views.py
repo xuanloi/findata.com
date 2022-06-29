@@ -879,7 +879,7 @@ def export_data(filter_list):
     obj.type = 'database export'
     obj.etl_date = datetime.now().date()
     obj.start_time = datetime.now()
-    check_list1 = ['Account', 'Task', 'Report_Item', 'Company', 'Item_Change']
+    check_list1 = ['Account', 'Task', 'Report_Item', 'Company', 'Item_Change', 'People', 'Management', 'Private_Holder', 'Org_Holder', 'Relation', 'Expert', 'Task_Profile', 'Document', 'Author', 'Subsidiary', 'Company_News']
     check_list2 = ['BS', 'BP', 'CF']
     
     from django.db import connection
