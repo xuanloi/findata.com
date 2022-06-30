@@ -5,7 +5,7 @@ psycopg2-binary
 redis
 huey
 xlwt
-redis-server
+#redis-server
 pandas
 JayDeBeApi
 openpyxl

@@ -1,4 +1,3 @@
-<!-- eslint-disable -->
 <template>
 <div>
 <TopMenu v-bind="{type: 'tophead', tophead: this.tophead}"></TopMenu>
@@ -75,15 +74,7 @@ v-model="tdate"
 
 <script>
 import mixing from "@/assets/js/mixing.js";
-import TopMenu from '@/components/TopMenu'
-import Footer from '@/components/Footer'
-
 export default {
-  components: {
-    TopMenu,
-    Footer
-  },
-
   data() {
     return {
       tophead: 'Xuất dữ liệu ra file định dạng MS Access',

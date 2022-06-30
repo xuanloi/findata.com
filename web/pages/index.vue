@@ -3,7 +3,7 @@
     <TopMenu/>
     <section class="hero is-fullheight-with-navbar">
   <div class="hero-body mt-5" style="align-items: flex-start">
-  <div class="container">
+  <div class="container mt-5">
         <div class="columns is-multiline">
           <div class="column is-3 has-text-centered" v-for="(v,i) in data" :key="i" :class="i>3? 'pt-1' : ''">
            <nuxt-link class="box-icon" :to="v.link" v-if="v.link">
@@ -33,7 +33,7 @@
   </div>
   </div>
 </section>
-  <Footer class="mt50"/>
+  <Footer />
   </div>
 </template>
 

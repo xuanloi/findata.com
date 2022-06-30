@@ -90,7 +90,6 @@ def base_query(rows, values, summary, distinct_values, sort):
     elif summary =='annotate':
         array = [{'key': 'Count',  'val': Count}, {'key': 'Min', 'val': Min}, {'key': 'Max', 'val': Max}, {'key': 'Sum', 'val': Sum}]
         for key, value in ast.literal_eval(distinct_values).items():   #
-            print(key, value)
             if isinstance(value, str) == True:
                 reducer = getattr(aggregator, value)
                 rows = rows.annotate(**{key: reducer(key)})
@@ -786,8 +785,8 @@ def export_table(table, filter_list):
     crsr = cnxn.cursor()
 
     success = False
-    check_list1 = ['BigAutoField', 'AutoField', 'TextField', 'CharField', 'BigIntegerField', 'IntegerField', 'DateTimeField', "DateField", 'BooleanField', 'ForeignKey', 'FloatField']
-    check_list2 = ['NUMBER', 'FLOAT', 'MEMO', 'MEMO', 'FLOAT', 'NUMBER', 'DATETIME', 'DATETIME', 'TEXT', 'MEMO', 'FLOAT']
+    check_list1 = ['PositiveIntegerField', 'PositiveBigIntegerField', 'BigAutoField', 'AutoField', 'TextField', 'CharField', 'BigIntegerField', 'IntegerField', 'DateTimeField', "DateField", 'BooleanField', 'ForeignKey', 'FloatField']
+    check_list2 = ['NUMBER', 'NUMBER', 'NUMBER', 'FLOAT', 'MEMO', 'MEMO', 'FLOAT', 'NUMBER', 'DATETIME', 'DATETIME', 'TEXT', 'MEMO', 'FLOAT']
     Model = apps.get_model('Backend', table)
     sql = 'create table ' + table + '('
     ins = 'insert into ' + table + '('
@@ -816,6 +815,10 @@ def export_table(table, filter_list):
                     ins += 'company_id, year, report_period_id, report_type_id, assigner_id, recipient_id,'
                     arr = [field.name, 'task__company__stock_code', 'task__year', 'task__report_period__value', 'task__report_type__value', 'task__assigner__name', 'task__recipient__name']
                     values = [*values, *arr]
+                                
+                elif field.related_model.__name__ == 'People':
+                    values.append(field.name + '__name')
+                
                 else:
                     values.append(field.name)
 
@@ -881,13 +884,14 @@ def export_data(filter_list):
     obj.start_time = datetime.now()
     check_list1 = ['Account', 'Task', 'Report_Item', 'Company', 'Item_Change', 'People', 'Management', 'Private_Holder', 'Org_Holder', 'Relation', 'Expert', 'Task_Profile', 'Document', 'Author', 'Subsidiary', 'Company_News']
     check_list2 = ['BS', 'BP', 'CF']
-    
-    from django.db import connection
-    tables = connection.introspection.table_names()
+    #check_list1 = ['People', 'Management', 'Private_Holder', 'Org_Holder', 'Relation', 'Expert', 'Task_Profile', 'Document', 'Author', 'Subsidiary', 'Company_News']
+    #check_list2 = []
+    allmodels = apps.all_models['Backend']
     res = True
-    for row in tables:
-        if row in check_list1 or row[:2] in check_list2:
-            res = export_table(row, filter_list)
+    for row in allmodels:
+        name = allmodels[row].__name__
+        if name in check_list1 or name[:2] in check_list2:
+            res = export_table(name, filter_list)
             if res == False:
                 break;
 
@@ -908,7 +912,6 @@ def export_data_api(request):
         filter_list = Q()
         for key, value in ast.literal_eval(filter).items():
             filter_list.add(Q(**{key: value}), Q.AND)
-
     res = export_data(filter_list)
     if res == True:
         return Response(status=status.HTTP_204_NO_CONTENT)

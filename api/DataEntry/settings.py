@@ -25,7 +25,7 @@ SECRET_KEY = '9#*0s42sn^hxbmd1#v3h)y*h6s@@6lw6x_#y5@h67b%jjesk^f'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'data.findata.com.vn', 'api.findata.com.vn', 'localhost', '61.28.238.196', '192.168.0.1', 'www.findata.com.vn']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'dataentry',
         'USER': 'postgres',
         'PASSWORD': '2018',
-        'HOST': 'localhost',
+        'HOST': '127.0.0.1', #'172.17.0.1',
         'PORT': '',
     }
 }
